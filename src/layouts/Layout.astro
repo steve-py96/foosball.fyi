@@ -4,7 +4,7 @@ import Footer from '@/components/Footer.astro';
 
 interface Props {
   title: string;
-  lang?: string;
+  lang?: string | undefined;
 }
 
 const { title, lang } = Astro.props;
@@ -24,6 +24,14 @@ const { title, lang } = Astro.props;
       body {
         background-color: black;
         color: white;
+      }
+
+      ul {
+        list-style: disc;
+      }
+
+      ol {
+        list-style: decimal;
       }
 
       .markdown-body {

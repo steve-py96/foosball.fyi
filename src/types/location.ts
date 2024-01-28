@@ -6,6 +6,6 @@ interface FoosLocation {
 
   // configured by user
   name: string;
-  default_language?: string;
+  default_locale?: string;
   google_maps_link: string;
 }

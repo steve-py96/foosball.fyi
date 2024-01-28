@@ -3,16 +3,17 @@ import IconGithub from '~icons/mdi/github';
 import Link from '@/components/Link.astro';
 ---
 
-<footer class="markdown-body b-t-white b-t-2">
+<footer class="markdown-body b-t-white b-t-2 print:hidden">
   <nav>
-    <ul class="flex gap-4 items-center justify-center p-0!">
+    <ul class="flex flex-wrap gap-4 items-center justify-center p-0! list-none">
       <li class="m-t-0!">
         <Link href="/">Home</Link>
       </li>
 
       <li class="m-t-0!">
         <Link href="https://github.com/steve-py96/foosball.fyi">
-          <span>GitHub</span><IconGithub name="mdi-github" />
+          <span>GitHub</span>
+          <IconGithub name="mdi-github" />
         </Link>
       </li>
     </ul>

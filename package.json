@@ -3,11 +3,13 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "dev": "bunx --bun astro dev",
-    "start": "bunx --bun astro dev",
-    "build": "bunx --bun astro check && bunx --bun astro build",
-    "preview": "bunx --bun astro preview",
-    "astro": "astro"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "add-contributor": "tsx ./scripts/add-contributor.ts",
+    "add-location": "tsx ./scripts/add-location.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
@@ -24,10 +26,10 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.175",
-    "@types/bun": "^1.0.4",
     "astro-auto-import": "^0.4.2",
     "prettier": "^3.2.4",
     "rehype-external-links": "^3.0.0",
+    "tsx": "^4.7.0",
     "unocss": "^0.58.4",
     "unplugin-icons": "^0.18.3"
   },

@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import type { GetStaticPathsItem } from 'astro';
+import type { FoosLocation } from '@/types/location';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('locations');
+  const returnedEntries: Array<
+    Omit<GetStaticPathsItem, 'props'> & {
+      props: {
+        entry: (typeof entries)[number];
+        locationId: string;
+        locale: string | undefined;
+        data: FoosLocation;
+        locales: Array<string>;
+      };
+    }
+  > = [];
+
+  const locationConfigs = import.meta.glob('@/content/locations/**/_config.yaml') as Record<
+    string,
+    () => Promise<{ default: FoosLocation }>
+  >;
+  const localesMap: Record<string, Array<string>> = {};
+
+  // alias all keys with only the locationId for easier access
+  for (const key in locationConfigs) {
+    locationConfigs[key.split('/').at(-2)!] = locationConfigs[key]!;
+  }
+
+  // create entries
+  await Promise.all(
+    entries.map(async (entry) => {
+      const [locationId, locale] = entry.slug.split('/') as [locationId: string, locale?: string];
+      const { default: data } = await locationConfigs[locationId]!();
+      const locales =
+        localesMap[locationId] ??
+        Array.from(
+          new Set(
+            // get all locales for one locationId
+            entries.reduce((acc, item) => {
+              const [entryLocationId, entryLocale] = item.slug.split('/') as [locationId: string, locale?: string];
+
+              // exclude undefined from possible locales
+              if (entryLocationId === locationId && entryLocale) {
+                acc.push(entryLocale);
+              }
+
+              return acc;
+            }, [] as Array<string>)
+          )
+        );
+
+      if (!localesMap[locationId]) {
+        localesMap[locationId] = locales;
+      }
+
+      const returnedEntry: (typeof returnedEntries)[number] = {
+        params: {
+          locationId,
+          locale,
+        },
+        props: {
+          entry,
+          data,
+          locationId,
+          locale,
+          locales,
+        },
+      };
+
+      returnedEntries.push(returnedEntry);
+
+      // if entry is a default, also make it available without language
+      if (locale && data.default_locale === locale) {
+        returnedEntries.push({
+          params: {
+            locationId,
+          },
+          props: {
+            entry,
+            data,
+            locationId,
+            locale: data.default_locale,
+            locales,
+          },
+        });
+      }
+    })
+  );
+
+  return returnedEntries;
+}
+
+const { entry, locale, locales, locationId } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.name} lang={locale}>
+  <div class="flex justify-end items-center gap-4 text-xs print:hidden">
+    <span>language:</span>
+
+    <select class="p-1" onchange="window.open(this.value,'_self')">
+      {
+        locales.map((otherLocale) => (
+          <option value={`/locations/${locationId}/${otherLocale}`} selected={locale === otherLocale}>
+            {otherLocale}
+          </option>
+        ))
+      }
+    </select>
+  </div>
+
+  <Content />
+</Layout>

@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import contributors from '$root/CONTRIBUTORS.json';
+import Link from './Link.astro';
+---
+
+<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-0! list-none">
+  {
+    contributors.map(({ html_url, login, avatar_url }) => (
+      <li class="m-t-0!">
+        <Link
+          href={html_url}
+          class="hover:decoration-none! flex gap-2 items-center b-1 b-[rgba(255,255,255,0.1)] p-2 group"
+        >
+          {avatar_url ? (
+            <Image
+              src={avatar_url}
+              alt={`profile picture of github user ${login}`}
+              width="40"
+              height="40"
+              class="rounded-full"
+            />
+          ) : (
+            <span class="w-40px h-40px rounded-full b-[rgba(255,255,255,0.1)] b-1 flex justify-center items-center color-white hover:decoration-none">
+              👀
+            </span>
+          )}
+          <span class="group-hover:decoration-underline">{login}</span>
+        </Link>
+      </li>
+    ))
+  }
+</ul>

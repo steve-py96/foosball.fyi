@@ -5,7 +5,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "$root/*": ["*"],
     },
-    "types": ["unplugin-icons/types/astro", "bun-types"],
+    "types": ["unplugin-icons/types/astro"],
   },
 }

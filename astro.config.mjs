@@ -60,6 +60,9 @@ export default defineConfig({
     }),
   ],
   site: SITE,
+  image: {
+    domains: ['github.com'],
+  },
   vite: {
     plugins: [
       viteYaml(),

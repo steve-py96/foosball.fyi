@@ -1,0 +1,45 @@
+import { readFile, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+
+export {};
+
+/*
+  why creating this extra step to store contributors instead of just using https://api.github.com/repos/steve-py96/foosball.fyi/contributors???
+
+  => that list doesn't include issuers (aka possible non-coders) which also should be considered contributors..
+*/
+
+interface RelevantUserData {
+  login: string;
+  html_url: string;
+  avatar_url: string;
+}
+
+const { GITHUB_USER } = process.env;
+
+if (!GITHUB_USER) {
+  console.error('❌ no GITHUB_USER env variable provided!');
+  process.exit(1);
+}
+
+const contributorFilePath = join(process.cwd(), 'CONTRIBUTORS.json');
+const { login, html_url, avatar_url } = await fetch(`https://api.github.com/users/${GITHUB_USER}`).then(
+  (res) => res.json() as unknown as Promise<RelevantUserData>
+);
+
+const contributors = JSON.parse(await readFile(contributorFilePath, { encoding: 'utf-8' })) as Array<RelevantUserData>;
+
+if (contributors.some((user) => user.login === login)) {
+  console.error(`❌ User ${login} already exists in the contributors!`);
+  process.exit(1);
+}
+
+contributors.push({
+  login,
+  html_url,
+  avatar_url,
+});
+
+await writeFile(contributorFilePath, JSON.stringify(contributors, null, 2), { encoding: 'utf-8' });
+
+console.log(`🎉 added contributor ${login} successfully`);

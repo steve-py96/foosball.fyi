@@ -3,6 +3,7 @@ import type { FoosLocation } from '@/types/location';
 import LocationSearch from './LocationSearch.vue';
 import IconLocation from '~icons/mdi/location';
 import IconGithub from '~icons/mdi/github';
+import IconPage from '~icons/mdi/link';
 
 const configs = import.meta.glob('@/content/locations/**/_config.yaml');
 const locations: Array<FoosLocation> = await Promise.all(
@@ -15,6 +16,7 @@ const locations: Array<FoosLocation> = await Promise.all(
 
 <LocationSearch client:only locations={locations}>
   <!-- outsource icons to astro to simplify icon handling in the project -->
+  <IconPage slot="icon_page" />
   <IconLocation slot="icon_maps" />
   <IconGithub slot="icon_github" />
 </LocationSearch>

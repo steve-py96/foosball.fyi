@@ -19,12 +19,23 @@
     </div>
 
     <output for="search_location" class="block m-t-10">
-      <ul v-if="filteredLocations.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-0! gap-2">
+      <ul
+        v-if="filteredLocations.length > 0"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-0! gap-2 list-none"
+      >
         <li v-for="{ github_id, google_maps_link, name } in filteredLocations" :key="github_id" class="m-t-0!">
           <div class="w-full h-full b-1 b-[rgba(255,255,255,0.1)] p-2">
-            <span>{{ name }}</span>
+            <a class="block decoration-none" :href="`/locations/${github_id}`">{{ name }}</a>
 
             <div class="flex justify-end b-t-1 b-[inherit] p-t-2 m-t-1 gap-2">
+              <a
+                v-if="$slots.icon_page"
+                :href="`/locations/${github_id}`"
+                :aria-label="`Page link for location ${name}`"
+              >
+                <slot name="icon_page" />
+              </a>
+
               <a
                 v-if="$slots.icon_maps"
                 target="_blank"

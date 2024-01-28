@@ -2,22 +2,15 @@
 name: Contributors
 ---
 
-import { getAllContributors } from '@/utils/cli';
-
-export const contributors = await getAllContributors();
+import ContributorList from '@/components/ContributorList.astro';
 
 # All contributors
 
-([contributors on github])
+[Contributors on GitHub], learn how to [contribute yourself here]
 
-## List of contributors (extracted)
+## List of contributors
 
-<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-0!">
-  {contributors.map((contributor) => (
-    <li class="m-t-0!">
-      <a href={`https://github.com/${contributor}`}>{contributors}</a>
-    </li>
-  ))}
-</ul>
+<ContributorList />
 
-[contributors on github]: https://github.com/steve-py96/foosball.fyi/graphs/contributors
+[Contributors on GitHub]: https://github.com/steve-py96/foosball.fyi/graphs/contributors
+[contribute yourself here]: https://github.com/steve-py96/foosball.fyi/blob/main/CONTRIBUTING.md
