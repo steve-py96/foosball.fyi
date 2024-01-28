@@ -6,6 +6,10 @@ import autoImport from 'astro-auto-import';
 import mdx from '@astrojs/mdx';
 import rehypeExternalLinks from 'rehype-external-links';
 import vue from '@astrojs/vue';
+import sitemap from '@astrojs/sitemap';
+
+const PUBLIC_DOMAIN = 'foosball.fyi';
+const SITE = `https://${PUBLIC_DOMAIN}`;
 
 // https://astro.build/config
 export default defineConfig({
@@ -36,7 +40,26 @@ export default defineConfig({
       ],
     }),
     vue(),
+    sitemap({
+      changefreq: 'weekly',
+      serialize(item) {
+        // add missing domain
+        if (!item.url.startsWith(SITE)) {
+          item.url = item.url.replace('https://', `${SITE}/`);
+        }
+
+        const pathname = item.url.slice(SITE.length);
+
+        // remove double slashes
+        if (pathname.includes('//')) {
+          item.url = `${SITE}${pathname.replace(/\/+/g, '/')}`;
+        }
+
+        return item;
+      },
+    }),
   ],
+  site: SITE,
   vite: {
     plugins: [
       viteYaml(),

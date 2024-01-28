@@ -1,3 +1,23 @@
 ---
 name: Contributors
 ---
+
+import { getAllContributors } from '@/utils/cli';
+
+export const contributors = await getAllContributors();
+
+# All contributors
+
+([contributors on github])
+
+## List of contributors (extracted)
+
+<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-0!">
+  {contributors.map((contributor) => (
+    <li class="m-t-0!">
+      <a href={`https://github.com/${contributor}`}>{contributors}</a>
+    </li>
+  ))}
+</ul>
+
+[contributors on github]: https://github.com/steve-py96/foosball.fyi/graphs/contributors

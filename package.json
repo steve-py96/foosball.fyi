@@ -3,15 +3,16 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
+    "dev": "bunx --bun astro dev",
+    "start": "bunx --bun astro dev",
+    "build": "bunx --bun astro check && bunx --bun astro build",
+    "preview": "bunx --bun astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "@astrojs/mdx": "^2.1.0",
+    "@astrojs/sitemap": "^3.0.5",
     "@astrojs/vue": "^4.0.8",
     "@modyfi/vite-plugin-yaml": "^1.1.0",
     "@unocss/reset": "^0.58.4",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.175",
+    "@types/bun": "^1.0.4",
     "astro-auto-import": "^0.4.2",
     "prettier": "^3.2.4",
     "rehype-external-links": "^3.0.0",
