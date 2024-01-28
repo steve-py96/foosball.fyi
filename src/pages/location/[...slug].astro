@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import type { GetStaticPathsItem } from 'astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('locations');
+  const returnedEntries: Array<
+    Omit<GetStaticPathsItem, 'props'> & { props: { entry: (typeof entries)[number]; lang: string } }
+  > = [];
+
+  entries.forEach((entry) => {
+    const slug = `/${entry.slug}`;
+    const lang = entry.slug.split('/').at(-1)!;
+
+    const returnedEntry: (typeof returnedEntries)[number] = {
+      params: {
+        slug,
+      },
+      props: {
+        entry,
+        lang,
+      },
+    };
+
+    returnedEntries.push(returnedEntry);
+
+    // if entry is a default, also make it available without language
+    if (entry.data.default) {
+      returnedEntries.push({
+        params: {
+          slug: slug.slice(0, slug.lastIndexOf('/')),
+        },
+        props: {
+          entry,
+          lang,
+        },
+      });
+    }
+  });
+
+  return returnedEntries;
+}
+
+const { entry, lang } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.name} lang={lang ?? 'en'}>
+  <Content />
+</Layout>

@@ -1,0 +1,20 @@
+---
+import type { FoosLocation } from '@/types/location';
+import LocationSearch from './LocationSearch.vue';
+import IconLocation from '~icons/mdi/location';
+import IconGithub from '~icons/mdi/github';
+
+const configs = import.meta.glob('@/content/locations/**/_config.yaml');
+const locations: Array<FoosLocation> = await Promise.all(
+  Object.keys(configs).map(async (configPath) => ({
+    ...((await configs[configPath]!()) as { default: FoosLocation }).default,
+    github_id: configPath.split('/').at(-2)!, // -1 is language, -2 is directory
+  }))
+);
+---
+
+<LocationSearch client:only locations={locations}>
+  <!-- outsource icons to astro to simplify icon handling in the project -->
+  <IconLocation slot="icon_maps" />
+  <IconGithub slot="icon_github" />
+</LocationSearch>

@@ -1,0 +1,45 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="404 - page not found">
+  <Fragment slot="head">
+    <script>
+      const showDetails = () => {
+        const textDetails = document.getElementById('details')!;
+
+        if (window.location.pathname.startsWith('/location')) {
+          const [_staticLocationSegment, dynamicLocationSegment, dynamicLanguageSegment] = window.location.pathname
+            .slice(1)
+            .split('/');
+
+          if (!dynamicLocationSegment) {
+            textDetails.textContent = 'The location does not exist!';
+          } else if (!dynamicLanguageSegment) {
+            textDetails.textContent = 'The location either does not exist or has no default language specified!';
+          } else {
+            textDetails.textContent = 'The location either does not exist or the requested language is unknown!';
+          }
+        } else {
+          textDetails.textContent = 'The page does not exist!';
+        }
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', showDetails);
+      } else {
+        showDetails();
+      }
+    </script>
+  </Fragment>
+
+  <main class="flex flex-col gap-2 justify-center items-center h-screen px-4">
+    <span>❌❌❌</span>
+
+    <span>Page not found...</span>
+
+    <span id="details"></span>
+
+    <span>❌❌❌</span>
+  </main>
+</Layout>

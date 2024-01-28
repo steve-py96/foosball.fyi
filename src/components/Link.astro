@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+const isExternalLink = href[0] !== '/';
+---
+
+<a
+  href={href}
+  class="inline-flex items-center gap-1"
+  {...isExternalLink
+    ? {
+        rel: 'noopener noreferrer',
+        target: '_blank',
+      }
+    : {}}
+>
+  <slot />
+</a>

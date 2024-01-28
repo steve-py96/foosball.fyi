@@ -1,0 +1,11 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": "/Users/steve/projects/foosball.fyi",
+    "paths": {
+      "@/*": ["src/*"],
+    },
+    "types": ["unplugin-icons/types/astro"],
+  },
+}

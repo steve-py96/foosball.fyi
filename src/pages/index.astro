@@ -1,0 +1,12 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// since [...slug] somehow doesn't allow index to be '' this is the workaround to go... :(
+const entry = (await getCollection('general')).find((entry) => entry.slug === 'index')!;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.name}>
+  <Content />
+</Layout>

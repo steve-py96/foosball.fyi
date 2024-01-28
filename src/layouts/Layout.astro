@@ -1,0 +1,56 @@
+---
+import 'github-markdown-css';
+import Footer from '@/components/Footer.astro';
+
+interface Props {
+  title: string;
+  lang?: string;
+}
+
+const { title, lang } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang ?? 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | foosball.fyi</title>
+
+    <style is:global>
+      body {
+        background-color: black;
+        color: white;
+      }
+
+      .markdown-body {
+        min-width: 200px;
+        max-width: 980px;
+        padding: 15px;
+        margin: 0 auto;
+      }
+
+      .markdown-body:not(footer) {
+        min-height: 100vh;
+      }
+
+      @media (min-width: 768px) {
+        .markdown-body {
+          padding: 45px;
+        }
+      }
+    </style>
+
+    <slot name="head" />
+  </head>
+
+  <body>
+    <main class="markdown-body">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

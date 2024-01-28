@@ -1,0 +1,37 @@
+{
+  "name": "kicker-rules",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.4.1",
+    "@astrojs/mdx": "^2.1.0",
+    "@astrojs/vue": "^4.0.8",
+    "@modyfi/vite-plugin-yaml": "^1.1.0",
+    "@unocss/reset": "^0.58.4",
+    "astro": "^4.2.5",
+    "github-markdown-css": "^5.5.0",
+    "nanoid": "^5.0.4",
+    "typescript": "^5.3.3",
+    "vue": "^3.4.15"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.175",
+    "astro-auto-import": "^0.4.2",
+    "prettier": "^3.2.4",
+    "rehype-external-links": "^3.0.0",
+    "unocss": "^0.58.4",
+    "unplugin-icons": "^0.18.3"
+  },
+  "type": "module",
+  "author": {
+    "name": "steve-py96",
+    "url": "https://github.com/steve-py96"
+  }
+}
