@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap KKL SCSS Testprojekt</title>
+    <link rel="stylesheet" href="scss/main.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" >
+      <div class="container navbar-kicker padding-lg-0">
+        <a class="navbar-brand" href="#"><img src="img/koelschkicker_title.png" class="navbar-img" alt="logofehlt"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end"  id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+   
+
+    <section class="row page-header gradient">
+      <div class="col-md-6">
+        <h1>Kneipenkickern in Köln</h1>   
+          <p>Du suchst nach Kickertischen in Kölner Kneipen? Oder stehst schon vor einem ebensolchen und kennst die Regeln nicht? Willst durchstarten und brauchst eine Anlaufstelle um dein Spiel zu verbessern? Oder willst sogar in der bunten Kölner Kickerliga durchstarten? Dann bist du hier genau richtig!</p>
+      </div>
+      <div class="col-md-6">
+        <p><img src="img/koelschkicker_title.png" class="hero-img" alt="logofehlt"></p>
+        <p><img src="img/man_blackback_ms.png" class="header-img" alt="header image"></p>
+        <p><buttontype="button" class="btn btn-outline-dark btn-lg">REGELN</button></p>
+      </div>
+    </section>
+
+<section class="section-insta col-lg-8 offset-lg-2"> 
+  
+  <div class="flex-container-insta">
+    <div class="flex-row">
+      <button type="button" class="btn btn-light btn-lg">
+        <img src="node_modules/bootstrap-icons/icons/instagram.svg" alt="instagram" width="32" height="32"> follow us on Instagram!
+      </button>
+    </div>
+    
+    <div class="flex-row-insta pt-3">
+      <figure data-behold-id="G4o9gnDW1CkQk2kIMTtu"></figure>
+      <script src="https://w.behold.so/widget.js" type="module"></script>
+    </div>
+  </div>
+</section>
+
+ 
+
+<section id="rules">
+    <div class="w-90 p-3">
+    <table class="table table-striped table-dark text-center">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">SPIELREGELN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Keine Getränke auf dem Kickertisch. Flüssigkeit auf der Spielfläche verdirbt den Kickerspaß.
+        </td>
+      
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Fordern: Ihr fordert den Sieger der vorherigen Partie indem ihr 50c auf den Tisch legt. <br>[oder durch Klopfen bei münzlosen Tischen]</br></td>
+    
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Anstoß: Der "Forderer" erhält den ersten Anstoß auf seiner 5er Reihe. Nach einem erzielten Tor hat die Mannschaft auf der 5er Reihe Anstoß, die das Tor kassiert hat. Vor dem Anstoß fragt der Angreifer den Verteidiger ob er bereit ist.</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td colspan="2">Gerät der Ball außer Kontrolle der Spielfiguren, erhält der nächstgelegene Torwart den Ball. Ausnahme: gerät der Ball in der Mitte außer Kontrolle, erhält die 5er Reihe der Mannschaft den Ball, die das letzte Tor kassiert hat. </td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td>Durchdrehen: Die Stangen dürfen vor der Ballberührung nicht um mehr als 360° rotiert werden.</td>
+        </tr>
+        <tr>
+            <th scope="row">6</th>
+            <td>Spielende: Es gewinnt die Mannschaft die zuerst 5 Tore erzielt. Der Sieger darf am Tisch verbleiben und gegen den nächsten Forderer antreten.</td>
+            </tr>
+    </tbody>
+  </table></div></section>
+
+  <section id="friends">
+    <h2>Friends</h2>
+    <div class="flex-container1">
+                    <div class="flex-friend">
+                <img src="img/Lokomotive_Logo_inv_final.svg" class="flex-friend-img" alt="img">
+            </div>
+              <div class="flex-friend">
+                <img src="img/friends_kkliga_logo.svg" class="flex-friend-img" alt="img">
+             </div>
+             <div class="flex-friend">
+                <img src="img/friends_kkf_logo.svg" class="flex-friend-img" alt="img">
+             </div>
+             <div class="flex-friend">
+                <img src="img/kki-de-bild_und_wortmarke-bg_white.svg" class="flex-friend-img" alt="img">
+             </div>  
+            </div>
+        </div>
+      </div>
+  </section>
+
+
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>

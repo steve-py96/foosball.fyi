@@ -34,4 +34,9 @@ If you did any contribution yourself (code-wise) you can call the contributor no
 
 Note: If you don't code yourself the person who handles your issue will add you.
 
+# Tools
+
+There are tools that help contributing, check out [SCRIPTS.md] for more informations about the existing tools.
+
 [all-locations page]: https://foosball.fyi/all-locations
+[SCRIPTS.md]: ./SCRIPTS.md

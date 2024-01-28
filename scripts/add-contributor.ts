@@ -16,14 +16,16 @@ interface RelevantUserData {
 }
 
 const { GITHUB_USER } = process.env;
+const [GITHUB_USER_ARG] = process.argv.slice(2);
+const USERNAME = GITHUB_USER ?? GITHUB_USER_ARG;
 
-if (!GITHUB_USER) {
-  console.error('❌ no GITHUB_USER env variable provided!');
+if (!USERNAME) {
+  console.error('❌ no username env/arg variable provided!');
   process.exit(1);
 }
 
 const contributorFilePath = join(process.cwd(), 'CONTRIBUTORS.json');
-const { login, html_url, avatar_url } = await fetch(`https://api.github.com/users/${GITHUB_USER}`).then(
+const { login, html_url, avatar_url } = await fetch(`https://api.github.com/users/${USERNAME}`).then(
   (res) => res.json() as unknown as Promise<RelevantUserData>
 );
 

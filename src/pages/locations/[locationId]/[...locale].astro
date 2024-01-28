@@ -93,11 +93,11 @@ export async function getStaticPaths() {
   return returnedEntries;
 }
 
-const { entry, locale, locales, locationId } = Astro.props;
+const { entry, locale, locales, locationId, data } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout title={entry.data.name} lang={locale}>
+<Layout title={entry.data.name ?? data.name} lang={locale}>
   <div class="flex justify-end items-center gap-4 text-xs print:hidden">
     <span>language:</span>
 
